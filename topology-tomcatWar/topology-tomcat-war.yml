@@ -8,6 +8,7 @@ imports:
   - tomcat-war-types:2.0.0-SNAPSHOT
   - alien-base-types:1.0-SNAPSHOT
   - tosca-normative-types:1.0.0.wd06-SNAPSHOT
+  - jdk-type:1.0.0-SNAPSHOT
 
 topology_template:
   inputs:
@@ -40,21 +41,17 @@ topology_template:
         tomcat_port: 80
         tomcat_url: "http://mirrors.ircam.fr/pub/apache/tomcat/tomcat-8/v8.0.29/bin/apache-tomcat-8.0.29.tar.gz"
       requirements:
-        - host:
-            node: Compute
-            capability: tosca.capabilities.Container
-            relationship: tosca.relationships.HostedOn
         - java:
-            node: Java
-            capability: alien.capabilities.Java
-            relationship: alien.relationships.RunOnJVM
+            node: JDK
+            capability: alien.capabilities.JDK
+            relationship: alien.relationships.JavaSoftwareHostedOnJDK
     Compute:
       type: tosca.nodes.Compute
       properties:
         os_arch: { get_input: os_arch }
         os_type: { get_input: os_type }
-    Java:
-      type: alien.nodes.Java
+    JDK:
+      type: alien.nodes.JDK
       properties:
         java_url: "http://download.oracle.com/otn-pub/java/jdk/7u75-b13/jdk-7u75-linux-x64.tar.gz"
         java_home: /opt/java

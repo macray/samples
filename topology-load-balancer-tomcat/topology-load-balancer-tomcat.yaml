@@ -9,6 +9,7 @@ imports:
   - apache-load-balancer-type:2.0.0-SNAPSHOT
   - tomcat-war-types:2.0.0-SNAPSHOT
   - alien-base-types:1.0-SNAPSHOT
+  - jdk-type:1.0.0-SNAPSHOT
 
 topology_template:
   inputs:
@@ -46,13 +47,9 @@ topology_template:
         tomcat_url: "http://mirrors.ircam.fr/pub/apache/tomcat/tomcat-8/v8.0.29/bin/apache-tomcat-8.0.29.tar.gz"
       requirements:
         - java:
-            node: Java
-            capability: alien.capabilities.Java
-            relationship: alien.relationships.RunOnJVM
-        - host:
-            node: WebServer
-            capability: tosca.capabilities.Container
-            relationship: tosca.relationships.HostedOn
+            node: JDK
+            capability: alien.capabilities.JDK
+            relationship: alien.relationships.JavaSoftwareHostedOnJDK
     WebServer:
       type: tosca.nodes.Compute
       properties:
@@ -84,8 +81,8 @@ topology_template:
       type: tosca.nodes.Network
       properties:
         ip_version: 4
-    Java:
-      type: alien.nodes.Java
+    JDK:
+      type: alien.nodes.JDK
       properties:
         java_url: "http://download.oracle.com/otn-pub/java/jdk/7u75-b13/jdk-7u75-linux-x64.tar.gz"
         java_home: /opt/java
