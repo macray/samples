@@ -12,3 +12,5 @@ imports:
 node_types:
   alien.nodes.test.testNode2:
     derived_from: alien.nodes.test.testNode1
+  alien.nodes.test.testNode2Bis:
+    derived_from: alien.nodes.test.testNode3
