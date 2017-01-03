@@ -1,14 +1,13 @@
 tosca_definitions_version: tosca_simple_yaml_1_0_0_wd03
 description: archive for git import testing
-template_name: test-archive-2
+template_name: test-archive-3
 template_version: 1.0.0-SNAPSHOT
 template_author: alien
 
 imports:
   - "tosca-normative-types:1.0.0-SNAPSHOT"
   - "test-archive-1:1.0.0-SNAPSHOT"
-  - "test-archive-3:1.0.0-SNAPSHOT"
 
 node_types:
-  alien.nodes.test.testNode2:
-    derived_from: alien.nodes.test.testNode1
+  alien.nodes.test.testNode3:
+    derived_from: tosca.nodes.SoftwareComponent
